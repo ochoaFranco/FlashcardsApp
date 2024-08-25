@@ -16,8 +16,10 @@ public class Deck {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long deckId;
+
     @NotEmpty
-    @Column(unique = true, length = 30)
+    @Column(unique = true, length = 30, nullable = false)
     private String deckName;
+
     private String description;
 }
