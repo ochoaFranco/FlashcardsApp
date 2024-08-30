@@ -10,6 +10,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
 import java.util.UUID;
 
 @AllArgsConstructor
@@ -37,4 +38,7 @@ public class User {
     @NotNull
     @Column(unique = true, nullable = false)
     private String mail;
+
+    @OneToMany(mappedBy = "user")
+    private List<Deck> deckList;
 }

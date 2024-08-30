@@ -7,6 +7,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
@@ -19,4 +21,7 @@ public class Category {
     @NotEmpty
     @Column(unique = true, length = 30, nullable = false)
     private String categoryName;
+
+    @ManyToMany(mappedBy = "categoryList")
+    private List<Word> wordList;
 }

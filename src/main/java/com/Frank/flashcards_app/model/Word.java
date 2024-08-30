@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -28,8 +29,15 @@ public class Word {
     @NotEmpty
     @Column(unique = true, length = 30, nullable = false)
     private String wordName;
-
     private LocalDateTime lastReviewed;
-
     private LocalDateTime nextReviewDue;
+    @ManyToMany(mappedBy = "wordList")
+    private List<Deck> deckList;
+    @ManyToMany
+    @JoinTable(
+            name = "word_category",
+            joinColumns = @JoinColumn(name = "word_id"),
+            inverseJoinColumns = @JoinColumn(name = "category_id")
+    )
+    private List<Category> categoryList;
 }
