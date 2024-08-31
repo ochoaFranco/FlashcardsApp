@@ -12,6 +12,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+//TODO I SHOULD CREATE A UTILS PACKAGE AND ADD FUNCTIONALITY FOR FINDING AN ID.
+
 @Service
 public class CategoryService implements ICategoryService {
     @Autowired
@@ -55,15 +57,16 @@ public class CategoryService implements ICategoryService {
         if (optionalCategory.isEmpty())
             throw new NotFoundException("Category not found!");
         Category category = optionalCategory.get();
-        // set new attributes.
-        // {....}
+        categoryMapper.updateCategoryFromDTO(categoryDTO, category);
         return categoryMapper.categoryToCategoryDTO(categoryRepo.save(category));
     }
 
     @Override
     public void deleteCategory(Long id) {
-
+        Optional<Category> optionalCategory = categoryRepo.findById(id);
+        // throw an error if category does not exist.
+        if (optionalCategory.isEmpty())
+            throw new NotFoundException("Category not found!");
+        categoryRepo.deleteById(id);
     }
-
-
 }
