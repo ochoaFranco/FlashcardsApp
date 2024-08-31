@@ -1,7 +1,7 @@
 package com.Frank.flashcards_app.service;
 import com.Frank.flashcards_app.dto.CategoryRequestDTO;
 import com.Frank.flashcards_app.dto.CategoryResponseDTO;
-import com.Frank.flashcards_app.exception.DuplicateCategoryNameException;
+import com.Frank.flashcards_app.exception.DuplicateNameException;
 import com.Frank.flashcards_app.exception.NotFoundException;
 import com.Frank.flashcards_app.model.Category;
 import com.Frank.flashcards_app.repository.ICategoryRepository;
@@ -12,8 +12,6 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
-
-//TODO I SHOULD CREATE A UTILS PACKAGE AND ADD FUNCTIONALITY FOR FINDING AN ID.
 
 @Service
 public class CategoryService implements ICategoryService {
@@ -28,7 +26,7 @@ public class CategoryService implements ICategoryService {
         Category category = modelMapper.map(categoryRequestDTO, Category.class);
         // check if category already exists.
         if (categoryRepo.existsByCategoryName(category.getCategoryName()))
-            throw new DuplicateCategoryNameException("Category already exists");
+            throw new DuplicateNameException("Category already exists");
         return modelMapper.map(categoryRepo.save(category), CategoryResponseDTO.class);
     }
 

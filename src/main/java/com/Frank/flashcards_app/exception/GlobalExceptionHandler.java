@@ -8,11 +8,11 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 @ControllerAdvice
 public class GlobalExceptionHandler {
     // handle duplicate name.
-    @ExceptionHandler(DuplicateCategoryNameException.class)
-    public ResponseEntity<ErrorResponse> handleDuplicateCategoryNameException(DuplicateCategoryNameException ex) {
+    @ExceptionHandler(DuplicateNameException.class)
+    public ResponseEntity<ErrorResponse> handleDuplicateCategoryNameException(DuplicateNameException ex) {
         ErrorResponse errorResponse = new ErrorResponse(
-                "Category name already exists",
-                "A category with this name is already registered. Please use a different name.");
+                "Name already exists",
+                "An object with this name is already registered. Please use a different name.");
         return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
     }
 
