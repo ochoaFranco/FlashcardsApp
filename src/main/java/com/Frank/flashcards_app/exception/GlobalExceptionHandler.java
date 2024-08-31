@@ -15,4 +15,13 @@ public class GlobalExceptionHandler {
                 "A category with this name is already registered. Please use a different name.");
         return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
     }
+
+    // handle Not found exception.
+    @ExceptionHandler(NotFoundException.class)
+    public ResponseEntity<ErrorResponse> handleNotFoundException(NotFoundException ex) {
+        ErrorResponse errorResponse = new ErrorResponse(
+                "Not found",
+                "Not found, try again with a different ID");
+        return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
+    }
 }
