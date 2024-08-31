@@ -1,18 +1,19 @@
 package com.Frank.flashcards_app.service;
 
-import com.Frank.flashcards_app.dto.CategoryDTO;
+import com.Frank.flashcards_app.dto.CategoryRequestDTO;
+import com.Frank.flashcards_app.dto.CategoryResponseDTO;
 
 import java.util.List;
 
 public interface ICategoryService {
     // Creates category
-    CategoryDTO saveCategory(CategoryDTO categoryDTO);
+    CategoryResponseDTO saveCategory(CategoryRequestDTO categoryRequestDTO);
     // Get all categories.
-    List<CategoryDTO> getCategories();
+    List<CategoryResponseDTO> getCategories();
     // Get one category.
-    CategoryDTO getCategoryById(Long id);
+    CategoryResponseDTO getCategoryById(Long id);
     // Update a category
-    CategoryDTO editCategory(Long id, CategoryDTO categoryDTO);
+    CategoryResponseDTO editCategory(Long id, CategoryRequestDTO categoryRequestDTO);
     // Delete a category
     void deleteCategory(Long id);
  }

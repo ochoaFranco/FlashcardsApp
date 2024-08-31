@@ -1,6 +1,7 @@
 package com.Frank.flashcards_app.controller;
 
-import com.Frank.flashcards_app.dto.CategoryDTO;
+import com.Frank.flashcards_app.dto.CategoryRequestDTO;
+import com.Frank.flashcards_app.dto.CategoryResponseDTO;
 import com.Frank.flashcards_app.service.ICategoryService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,28 +19,28 @@ public class CategoryController {
 
     // Create category.
     @PostMapping("/create")
-    public ResponseEntity<CategoryDTO> createCategory(@Valid @RequestBody CategoryDTO categoryDTO) {
-        System.out.println("Name: " + categoryDTO.getCategoryName());
-        CategoryDTO categoryDTOResponse= categoryService.saveCategory(categoryDTO);
-        return new ResponseEntity<>(categoryDTOResponse, HttpStatus.CREATED);
+    public ResponseEntity<CategoryResponseDTO> createCategory(@Valid @RequestBody CategoryRequestDTO categoryRequestDTO) {
+        System.out.println("Name: " + categoryRequestDTO.getCategoryName());
+        CategoryResponseDTO categoryRequestDTOResponse = categoryService.saveCategory(categoryRequestDTO);
+        return new ResponseEntity<>(categoryRequestDTOResponse, HttpStatus.CREATED);
     }
 
     // Read all categories.
     @GetMapping()
-    public ResponseEntity<List<CategoryDTO>> getCategories() {
+    public ResponseEntity<List<CategoryResponseDTO>> getCategories() {
         return new ResponseEntity<>(categoryService.getCategories(), HttpStatus.OK);
     }
 
     // Read one category.
     @GetMapping("/{id}")
-    public ResponseEntity<CategoryDTO> getCategoryById(@PathVariable Long id) {
+    public ResponseEntity<CategoryResponseDTO> getCategoryById(@PathVariable Long id) {
         return new ResponseEntity<>(categoryService.getCategoryById(id), HttpStatus.OK);
     }
 
     // update a category by its ID.
     @PutMapping("/edit/{id}")
-    public ResponseEntity<CategoryDTO> editCategory(@PathVariable Long id, @Valid @RequestBody CategoryDTO categoryDTO) {
-        return new ResponseEntity<>(categoryService.editCategory(id, categoryDTO ), HttpStatus.OK);
+    public ResponseEntity<CategoryResponseDTO> editCategory(@PathVariable Long id, @Valid @RequestBody CategoryRequestDTO categoryRequestDTO) {
+        return new ResponseEntity<>(categoryService.editCategory(id, categoryRequestDTO), HttpStatus.OK);
     }
 
     // Delete a category by its ID.

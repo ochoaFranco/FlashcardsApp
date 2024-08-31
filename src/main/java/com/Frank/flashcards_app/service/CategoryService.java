@@ -1,10 +1,11 @@
 package com.Frank.flashcards_app.service;
-import com.Frank.flashcards_app.dto.CategoryDTO;
+import com.Frank.flashcards_app.dto.CategoryRequestDTO;
+import com.Frank.flashcards_app.dto.CategoryResponseDTO;
 import com.Frank.flashcards_app.exception.DuplicateCategoryNameException;
 import com.Frank.flashcards_app.exception.NotFoundException;
-import com.Frank.flashcards_app.mapper.CategoryMapper;
 import com.Frank.flashcards_app.model.Category;
 import com.Frank.flashcards_app.repository.ICategoryRepository;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,48 +20,50 @@ public class CategoryService implements ICategoryService {
     @Autowired
     ICategoryRepository categoryRepo;
     @Autowired
-    CategoryMapper categoryMapper;
+    ModelMapper modelMapper;
 
     @Override
-    public CategoryDTO saveCategory(CategoryDTO categoryDTO) {
-        Category category = categoryMapper.categoryDTOToCategory(categoryDTO);
+    public CategoryResponseDTO saveCategory(CategoryRequestDTO categoryRequestDTO) {
+        Category category = modelMapper.map(categoryRequestDTO, Category.class);
         // check if category already exists.
         if (categoryRepo.existsByCategoryName(category.getCategoryName()))
             throw new DuplicateCategoryNameException("Category already exists");
-        return categoryMapper.categoryToCategoryDTO(categoryRepo.save(category));
+//        return categoryMapper.categoryToCategoryDTO(categoryRepo.save(category));
+        return modelMapper.map(categoryRepo.save(category), CategoryResponseDTO.class);
     }
 
     // Get all categories.
     @Override
-    public List<CategoryDTO> getCategories() {
+    public List<CategoryResponseDTO> getCategories() {
         return categoryRepo.findAll()
                 .stream()
-                .map(category -> categoryMapper.categoryToCategoryDTO(category))
+                .map(category -> modelMapper.map(category, CategoryResponseDTO.class))
                 .collect(Collectors.toList());
     }
 
     // Get one category given by its ID.
     @Override
-    public CategoryDTO getCategoryById(Long id) {
+    public CategoryResponseDTO getCategoryById(Long id) {
         Optional<Category> optionalCategory = categoryRepo.findById(id);
         // throw an error if category does not exist.
         if (optionalCategory.isEmpty())
             throw new NotFoundException("Category not found!");
-        return categoryMapper.categoryToCategoryDTO(optionalCategory.get());
+        return modelMapper.map(optionalCategory.get(), CategoryResponseDTO.class);
     }
 
     // Update a category.
     @Override
-    public CategoryDTO editCategory(Long id, CategoryDTO categoryDTO) {
+    public CategoryResponseDTO editCategory(Long id, CategoryRequestDTO categoryRequestDTO) {
         Optional<Category> optionalCategory = categoryRepo.findById(id);
         // throw an error if category does not exist.
         if (optionalCategory.isEmpty())
             throw new NotFoundException("Category not found!");
         Category category = optionalCategory.get();
-        categoryMapper.updateCategoryFromDTO(categoryDTO, category);
-        return categoryMapper.categoryToCategoryDTO(categoryRepo.save(category));
+        modelMapper.map(categoryRequestDTO, category);
+        return modelMapper.map(categoryRepo.save(category),CategoryResponseDTO.class);
     }
 
+    // Delete a category.
     @Override
     public void deleteCategory(Long id) {
         Optional<Category> optionalCategory = categoryRepo.findById(id);
