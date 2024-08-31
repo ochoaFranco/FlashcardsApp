@@ -25,7 +25,7 @@ public class CategoryService implements ICategoryService {
     public CategoryDTO saveCategory(CategoryDTO categoryDTO) {
         Category category = categoryMapper.categoryDTOToCategory(categoryDTO);
         // check if category already exists.
-        if (categoryRepo.existsByName(category.getCategoryName()))
+        if (categoryRepo.existsByCategoryName(category.getCategoryName()))
             throw new DuplicateCategoryNameException("Category already exists");
         return categoryMapper.categoryToCategoryDTO(categoryRepo.save(category));
     }

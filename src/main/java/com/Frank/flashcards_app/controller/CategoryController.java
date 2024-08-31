@@ -19,6 +19,7 @@ public class CategoryController {
     // Create category.
     @PostMapping("/create")
     public ResponseEntity<CategoryDTO> createCategory(@Valid @RequestBody CategoryDTO categoryDTO) {
+        System.out.println("Name: " + categoryDTO.getCategoryName());
         CategoryDTO categoryDTOResponse= categoryService.saveCategory(categoryDTO);
         return new ResponseEntity<>(categoryDTOResponse, HttpStatus.CREATED);
     }
@@ -37,12 +38,14 @@ public class CategoryController {
 
     // update a category by its ID.
     @PutMapping("/edit/{id}")
-    public ResponseEntity<CategoryDTO> editCategory(@PathVariable Long id, @RequestBody @Valid CategoryDTO categoryDTO) {
+    public ResponseEntity<CategoryDTO> editCategory(@PathVariable Long id, @Valid @RequestBody CategoryDTO categoryDTO) {
         return new ResponseEntity<>(categoryService.editCategory(id, categoryDTO ), HttpStatus.OK);
     }
+
     // Delete a category by its ID.
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> deleteCategory(@PathVariable Long id) {
+        categoryService.deleteCategory(id);
         return new ResponseEntity<>("Category deleted successfully", HttpStatus.OK);
     }
 }
