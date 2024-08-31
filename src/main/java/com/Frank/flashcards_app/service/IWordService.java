@@ -1,16 +1,18 @@
 package com.Frank.flashcards_app.service;
-import com.Frank.flashcards_app.dto.WordDTO;
+import com.Frank.flashcards_app.dto.WordRequestDTO;
+import com.Frank.flashcards_app.dto.WordResponseDTO;
+
 import java.util.List;
 
 public interface IWordService {
     // Creates a word
-    WordDTO saveWord(WordDTO wordDTO);
+    WordResponseDTO saveWord(WordRequestDTO wordRequestDTO);
     // Get all words.
-    List<WordDTO> getWords();
+    List<WordResponseDTO> getWords();
     // Get one word.
-    WordDTO getWordById(Long id);
+    WordResponseDTO getWordById(Long id);
     // Update a word
-    WordDTO editWord(Long id, WordDTO wordDTO);
+    WordResponseDTO editWord(Long id, WordRequestDTO wordRequestDTO);
     // Delete a word
     void deleteWord(Long id);
 }

@@ -22,13 +22,13 @@ public class CategoryService implements ICategoryService {
     @Autowired
     ModelMapper modelMapper;
 
+    // Creates a category.
     @Override
     public CategoryResponseDTO saveCategory(CategoryRequestDTO categoryRequestDTO) {
         Category category = modelMapper.map(categoryRequestDTO, Category.class);
         // check if category already exists.
         if (categoryRepo.existsByCategoryName(category.getCategoryName()))
             throw new DuplicateCategoryNameException("Category already exists");
-//        return categoryMapper.categoryToCategoryDTO(categoryRepo.save(category));
         return modelMapper.map(categoryRepo.save(category), CategoryResponseDTO.class);
     }
 

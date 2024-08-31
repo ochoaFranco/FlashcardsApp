@@ -20,7 +20,6 @@ public class CategoryController {
     // Create category.
     @PostMapping("/create")
     public ResponseEntity<CategoryResponseDTO> createCategory(@Valid @RequestBody CategoryRequestDTO categoryRequestDTO) {
-        System.out.println("Name: " + categoryRequestDTO.getCategoryName());
         CategoryResponseDTO categoryRequestDTOResponse = categoryService.saveCategory(categoryRequestDTO);
         return new ResponseEntity<>(categoryRequestDTOResponse, HttpStatus.CREATED);
     }

@@ -26,7 +26,7 @@ public class Word {
     @Column(nullable = false)
     private Difficulty difficulty;
 
-    @NotEmpty
+    @NotEmpty(message = "Word name must not be empty")
     @Column(unique = true, length = 30, nullable = false)
     private String wordName;
     private LocalDateTime lastReviewed;
