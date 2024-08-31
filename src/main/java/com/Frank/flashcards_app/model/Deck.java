@@ -24,10 +24,6 @@ public class Deck {
     private String deckName;
     private String description;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
-
     @ManyToMany
     @JoinTable(
             name = "deck_word",
