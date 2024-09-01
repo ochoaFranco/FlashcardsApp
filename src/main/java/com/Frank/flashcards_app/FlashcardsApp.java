@@ -8,10 +8,6 @@ import org.springframework.ui.Model;
 
 @SpringBootApplication
 public class FlashcardsApp {
-	@Bean
-	public ModelMapper modelMapper() {
-		return new ModelMapper();
-	}
 	public static void main(String[] args) {
 		SpringApplication.run(FlashcardsApp.class, args);
 	}

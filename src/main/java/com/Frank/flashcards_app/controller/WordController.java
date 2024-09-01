@@ -48,4 +48,6 @@ public class WordController {
         wordService.deleteWord(id);
         return new ResponseEntity<>("Word deleted successfully", HttpStatus.OK);
     }
+
+    // Assign Categories.
 }
