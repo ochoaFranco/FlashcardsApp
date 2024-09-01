@@ -8,7 +8,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.List;
+import java.util.Set;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -21,5 +21,5 @@ public class DeckRequestDTO {
     @Size(max = 255, message = "Description should not exceed 255 characters")
     private String description;
 
-    private List<Long> wordIds;
+    private Set<Long> wordIds;
 }

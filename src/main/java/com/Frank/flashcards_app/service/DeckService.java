@@ -5,13 +5,14 @@ import com.Frank.flashcards_app.dto.DeckResponseDTO;
 import com.Frank.flashcards_app.exception.DuplicateNameException;
 import com.Frank.flashcards_app.exception.NotFoundException;
 import com.Frank.flashcards_app.model.Deck;
+import com.Frank.flashcards_app.model.Word;
 import com.Frank.flashcards_app.repository.IDeckRepository;
+import com.Frank.flashcards_app.repository.IWordRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -19,15 +20,26 @@ public class DeckService implements IDeckService {
     @Autowired
     IDeckRepository deckRepo;
     @Autowired
+    IWordRepository wordRepo;
+    @Autowired
     ModelMapper modelMapper;
 
     // Creates a deck.
     @Override
     public DeckResponseDTO saveDeck(DeckRequestDTO deckRequestDTO) {
         Deck deck = modelMapper.map(deckRequestDTO, Deck.class);
+        // fetch words using IDs from the DTO.
+        Set<Long> wordIds = deckRequestDTO.getWordIds();
+
+        // Assign words to the deck.
+        if (wordIds != null && !wordIds.isEmpty()) {
+            List<Word> words = wordRepo.findAllById(wordIds);
+            deck.setWordList(new ArrayList<>(new HashSet<>(words)));
+        }
         // check if deck already exists.
         if (deckRepo.existsByDeckName(deck.getDeckName()))
             throw new DuplicateNameException("Deck already exists");
+
         return modelMapper.map(deckRepo.save(deck), DeckResponseDTO.class);
     }
 
