@@ -52,6 +52,7 @@ public class WordController {
     // Assign category
     @PatchMapping("/assign-category/{id}")
     public ResponseEntity<WordResponseDTO> assignCategory(@PathVariable Long id, @RequestParam Long categoryId) {
-        WordResponseDTO updatedWord= wordService.assignCategory(id, categoryId);
+        WordResponseDTO updatedWord = wordService.assignCategory(id, categoryId);
+        return new ResponseEntity<>(updatedWord, HttpStatus.OK);
     }
 }

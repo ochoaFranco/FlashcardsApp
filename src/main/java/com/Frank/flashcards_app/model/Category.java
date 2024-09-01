@@ -24,4 +24,9 @@ public class Category {
 
     @ManyToMany(mappedBy = "categoryList")
     private List<Word> wordList;
+
+    @Override
+    public String toString() {
+        return categoryName; // Override to return the category name
+    }
 }
