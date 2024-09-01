@@ -49,5 +49,9 @@ public class WordController {
         return new ResponseEntity<>("Word deleted successfully", HttpStatus.OK);
     }
 
-    // Assign Categories.
+    // Assign category
+    @PatchMapping("/assign-category/{id}")
+    public ResponseEntity<WordResponseDTO> assignCategory(@PathVariable Long id, @RequestParam Long categoryId) {
+        WordResponseDTO updatedWord= wordService.assignCategory(id, categoryId);
+    }
 }

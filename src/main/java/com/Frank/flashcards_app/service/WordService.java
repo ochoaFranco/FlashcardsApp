@@ -89,7 +89,7 @@ public class WordService implements IWordService {
     // Assign a categroy to a certain word.
     @Override
     @Transactional
-    public void assignCategory(Long wordId, Long categoryId) {
+    public WordResponseDTO assignCategory(Long wordId, Long categoryId) {
         Optional<Word> optionalWord = wordRepo.findById(wordId);
         Optional<Category> optionalCategory = categoryRepo.findById(categoryId);
         // check for null categories and words.
@@ -103,6 +103,6 @@ public class WordService implements IWordService {
         word.getCategoryList().add(category);
         // updating entities.
         categoryRepo.save(category);
-        wordRepo.save(word);
+        return modelMapper.map(wordRepo.save(word), WordResponseDTO.class) ;
     }
 }
