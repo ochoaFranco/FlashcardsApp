@@ -19,6 +19,7 @@ public class WordResponseDTO {
     private String meaning;
     private Difficulty difficulty;
     private List<String> categoryNames;
+    private List<String> deckNames;
     private LocalDateTime lastReviewed;
     private LocalDateTime nextReviewDue;
 }

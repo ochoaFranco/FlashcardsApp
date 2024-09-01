@@ -3,6 +3,7 @@ package com.Frank.flashcards_app.configuration;
 import com.Frank.flashcards_app.dto.WordRequestDTO;
 import com.Frank.flashcards_app.dto.WordResponseDTO;
 import com.Frank.flashcards_app.model.Category;
+import com.Frank.flashcards_app.model.Deck;
 import com.Frank.flashcards_app.model.Word;
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
@@ -24,6 +25,7 @@ public class ModelMapperConfig {
 
         // Custom mapping form word to WordResponseDTO
         modelMapper.typeMap(Word.class, WordResponseDTO.class).addMappings(mapper -> {
+            // Mapping for categories.
             mapper.map(
                     src -> src.getCategoryList() != null ? // handling when a category was associated.
                             src.getCategoryList().stream()
@@ -32,7 +34,18 @@ public class ModelMapperConfig {
                             Collections.emptyList(),
                     WordResponseDTO::setCategoryNames
             );
+            // Mapping for decks.
+            mapper.map(
+                    src -> src.getDeckList() != null ?
+                            src.getDeckList().stream()
+                                    .map(Deck::getDeckName)
+                                    .collect(Collectors.toList()) :
+                            Collections.emptyList(),
+                    WordResponseDTO::setDeckNames
+            );
         });
+
+
         return modelMapper;
     }
 }

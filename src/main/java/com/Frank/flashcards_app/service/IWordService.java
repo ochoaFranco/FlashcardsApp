@@ -17,4 +17,6 @@ public interface IWordService {
     void deleteWord(Long id);
     // assign category
     WordResponseDTO assignCategory(Long wordId, Long categoryId);
+    // assign deck
+    WordResponseDTO assignDeck(Long wordId, Long deckId);
 }

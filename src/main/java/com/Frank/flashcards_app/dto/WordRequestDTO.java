@@ -13,6 +13,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.List;
+import java.util.Set;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -28,6 +29,6 @@ public class WordRequestDTO {
     @NotEmpty(message = "Meaning must not be empty")
     @Size(max = 300, message = "Word name must not exceed 300 characters")
     private String meaning;
-    private List<Long> categoryList; // IDs of the categories to be assigned
-    private List<Long> deckList; // IDs of the decks to be assigned
+    private Set<Long> categoryList; // IDs of the categories to be assigned
+    private Set<Long> deckList; // IDs of the decks to be assigned
 }

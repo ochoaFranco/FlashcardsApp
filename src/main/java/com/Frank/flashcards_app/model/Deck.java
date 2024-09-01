@@ -31,4 +31,9 @@ public class Deck {
             inverseJoinColumns = @JoinColumn(name = "word_id")
     )
     private List<Word> wordList;
+
+    @Override
+    public String toString() {
+        return deckName;
+    }
 }

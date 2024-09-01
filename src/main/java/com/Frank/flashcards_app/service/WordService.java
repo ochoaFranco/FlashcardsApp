@@ -14,8 +14,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -34,16 +33,16 @@ public class WordService implements IWordService {
     public WordResponseDTO saveWord(WordRequestDTO wordRequestDTO) {
         Word word = modelMapper.map(wordRequestDTO, Word.class);
         // fetch categories using IDs from the DTO.
-        List<Long> categoryIds = wordRequestDTO.getCategoryList();
+        Set<Long> categoryIds = wordRequestDTO.getCategoryList();
         if (categoryIds != null && !categoryIds.isEmpty()) {
             List<Category> categories = categoryRepo.findAllById(categoryIds);
-            word.setCategoryList(categories);
+            word.setCategoryList(new ArrayList<>(new HashSet<>(categories))); // Ensure unique decks
         }
         // fetch decks using IDs from the DTO
-        List<Long> deckIds = wordRequestDTO.getDeckList();
+        Set<Long> deckIds = wordRequestDTO.getDeckList();
         if (deckIds != null && !deckIds.isEmpty()) {
             List<Deck> decks = deckRepo.findAllById(deckIds);
-            word.setDeckList(decks);
+            word.setDeckList(new ArrayList<>(new HashSet<>(decks))); // Ensure unique decks
         }
         return modelMapper.map(wordRepo.save(word), WordResponseDTO.class);
     }
@@ -86,7 +85,7 @@ public class WordService implements IWordService {
         wordRepo.deleteById(id);
     }
 
-    // Assign a categroy to a certain word.
+    // Assign a category to a certain word.
     @Override
     @Transactional
     public WordResponseDTO assignCategory(Long wordId, Long categoryId) {
@@ -98,11 +97,35 @@ public class WordService implements IWordService {
         // get entities.
         Word word = optionalWord.get();
         Category category = optionalCategory.get();
+        if (word.getCategoryList().contains(category))
+            throw new IllegalArgumentException("Category already assigned!");
         // update lists.
         category.getWordList().add(word);
         word.getCategoryList().add(category);
         // updating entities.
         categoryRepo.save(category);
-        return modelMapper.map(wordRepo.save(word), WordResponseDTO.class) ;
+        wordRepo.save(word);
+        return modelMapper.map(word, WordResponseDTO.class) ;
+    }
+
+    @Override
+    public WordResponseDTO assignDeck(Long wordId, Long deckId) {
+        Optional<Word> optionalWord = wordRepo.findById(wordId);
+        Optional<Deck> optionalDeck = deckRepo.findById(deckId);
+        // check for null decks and words.
+        if (optionalWord.isEmpty() || optionalDeck.isEmpty())
+            throw new NotFoundException("word or deck not found!");
+        // get entities.
+        Word word = optionalWord.get();
+        Deck deck = optionalDeck.get();
+        if (word.getDeckList().contains(deck))
+            throw new IllegalArgumentException("Deck already assigned!");
+        // update lists.
+        deck.getWordList().add(word);
+        word.getDeckList().add(deck);
+        // updating entities.
+        deckRepo.save(deck);
+        wordRepo.save(word);
+        return modelMapper.map(word, WordResponseDTO.class) ;
     }
 }

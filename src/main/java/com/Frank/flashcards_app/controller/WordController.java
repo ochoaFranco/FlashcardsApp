@@ -55,4 +55,11 @@ public class WordController {
         WordResponseDTO updatedWord = wordService.assignCategory(id, categoryId);
         return new ResponseEntity<>(updatedWord, HttpStatus.OK);
     }
+
+    // Assign deck
+    @PatchMapping("/assign-deck/{id}")
+    public ResponseEntity<WordResponseDTO> assignDeck(@PathVariable Long id, @RequestParam Long deckId) {
+        WordResponseDTO updatedWord = wordService.assignDeck(id, deckId);
+        return new ResponseEntity<>(updatedWord, HttpStatus.OK);
+    }
 }
