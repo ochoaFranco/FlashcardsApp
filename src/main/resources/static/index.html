@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flashcards Dashboard</title>
+    <link rel="stylesheet" href="css/dashboard/dashboard-styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Flashcards Dashboard</h1>
+        </header>
+
+        <!-- navigation links -->
+         <nav>
+            <a href="deck-management.html">Manage Decks</a>
+            <a href="word-management.html">Manage Words</a>
+            <a href="category-management.html">Manage Categories</a>
+         </nav>
+        
+        <!-- overview section -->
+        <section id="overview">
+            <h2>overview</h2>
+            <div class="overview-item">
+                <h3>Total Decks: <span id="total-decks">0</span></h3>
+                <h3>Total Categories: <span id="total-categories">0</span></h3>
+                <h3>Recent Activity</h3>
+                <ul id="recent-activity"></ul>
+            </div>
+        </section>
+
+        <!-- deck list -->
+        <section id="deck-list">
+            <h2>Decks</h2>
+            <ul id="decks"></ul>
+        </section>
+        
+        <!-- category list -->
+        <section id="category-list">
+            <h2>Categories</h2>
+            <ul id="categories"></ul>
+        </section>
+    </div>
+    <script src="js/dashboard/dashboard.js"></script>
+</body>
+</html>

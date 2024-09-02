@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Decks</title>
+    <link rel="stylesheet" href="css/dashboard/dashboard-styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Manage Decks</h1>
+            <button onclick="showCreateDeckForm()">Create New Deck</button>
+        </header>
+        
+        <!-- navigation links -->
+        <nav>
+            <a href="index.html">Home</a>
+         </nav>
+
+        <!-- Deck form -->
+        <div id="deck-form" style="display: none;">
+            <h2>Create or Edit Deck</h2>
+            <form id="deckForm">
+                <input type="hidden" id="deckId">
+                <label for="deckName">Deck Name:</label>
+                <input type="text" id="deckName" required>
+                <label for="description">Description:</label>
+                <textarea id="description"></textarea>
+                <button type="submit">Save</button>
+            </form>
+        </div>
+
+        <!-- Deck list -->
+        <section id="deck-list">
+            <h2>Decks</h2>
+            <!-- <ul id="decksList"></ul> -->
+        </section>
+    </div>
+    <script src="js/deck-management/deck-app.js"></script>
+</body>
+</html>
