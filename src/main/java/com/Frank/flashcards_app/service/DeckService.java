@@ -82,4 +82,25 @@ public class DeckService implements IDeckService {
             throw new NotFoundException("Deck not found!");
         deckRepo.deleteById(id);
     }
+
+    @Override
+    public DeckResponseDTO assignWord(Long deckId, Long wordId) {
+        Optional<Deck> optionalDeck = deckRepo.findById(deckId);
+        Optional<Word> optionalWord = wordRepo.findById(wordId);
+        // check for null decks and words.
+        if (optionalWord.isEmpty() || optionalDeck.isEmpty())
+            throw new NotFoundException("word or deck not found!");
+        // get entities.
+        Word word = optionalWord.get();
+        Deck deck = optionalDeck.get();
+        if (deck.getWordList().contains(word))
+            throw new IllegalArgumentException("Word already assigned!");
+        // update lists.
+        deck.getWordList().add(word);
+        word.getDeckList().add(deck);
+        // updating entities.
+        deckRepo.save(deck);
+        wordRepo.save(word);
+        return modelMapper.map(deck, DeckResponseDTO.class);
+    }
 }

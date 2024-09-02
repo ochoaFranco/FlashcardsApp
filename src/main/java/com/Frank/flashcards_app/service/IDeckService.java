@@ -16,4 +16,5 @@ public interface IDeckService {
     DeckResponseDTO editDeck(Long id, DeckRequestDTO deckRequestDTO);
     // Delete a deck
     void deleteDeck(Long id);
+    DeckResponseDTO assignWord(Long deckId, Long wordId);
 }

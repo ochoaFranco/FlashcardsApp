@@ -48,4 +48,11 @@ public class DeckController {
         deckService.deleteDeck(id);
         return new ResponseEntity<>("Deck deleted successfully", HttpStatus.OK);
     }
+
+    // Assign a word.
+    @PatchMapping("/assign-word/{deckId}")
+    public ResponseEntity<DeckResponseDTO> assignWord(@PathVariable Long deckId, @RequestParam Long wordId) {
+        DeckResponseDTO updatedDeck = deckService.assignWord(deckId, wordId);
+        return new ResponseEntity<>(updatedDeck, HttpStatus.OK);
+    }
 }

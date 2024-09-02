@@ -108,7 +108,9 @@ public class WordService implements IWordService {
         return modelMapper.map(word, WordResponseDTO.class) ;
     }
 
+    // Assign a deck to a certain word.
     @Override
+    @Transactional
     public WordResponseDTO assignDeck(Long wordId, Long deckId) {
         Optional<Word> optionalWord = wordRepo.findById(wordId);
         Optional<Deck> optionalDeck = deckRepo.findById(deckId);
