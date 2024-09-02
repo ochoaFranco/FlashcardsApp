@@ -51,6 +51,65 @@ const displayDecks = (decks) => {
     });
 }
 
+// show the form for creating a new deck.
+const showCreateDeckForm = () => {
+    document.getElementById('deck-form').style.display = 'block';
+    resetDeckForm();
+}
+
+// Reset the form fields
+const resetDeckForm = () => {
+    document.getElementById('deckId').value = '';
+    document.getElementById('deckName').value = '';
+    document.getElementById('description').value = '';
+};
+
+// Save a new or updated deck
+const saveDeck = async () => {
+    const deckId = document.getElementById('deckId').value;
+    const deckName = document.getElementById('deckName').value;
+    const description = document.getElementById('description').value;
+    const method = deckId ? 'PUT' : 'POST';
+    const url = deckId ? `http://127.0.0.1:8080/decks/edit/${deckId}` : 'http://127.0.0.1:8080/decks/create';
+
+    try {
+        const response = await fetch(url, {
+            method,
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ deckName, description })
+        });
+
+        if (!response.ok) throw new Error('Failed to save deck');
+
+        await getDecks(); // Refresh the list of decks
+        document.getElementById('deck-form').style.display = 'none'; // Hide the form
+    } catch (error) {
+        console.error('Error saving deck', error);
+    }
+};
+
+
+// Edit an existing deck
+const editDeck = async (deckId) => {
+    try {
+        const response = await fetch(`http://127.0.0.1:8080/decks/${deckId}`);
+        if (!response.ok) throw new Error('Failed to fetch deck');
+
+        const deck = await response.json();
+        document.getElementById('deckId').value = deck.deckId;
+        document.getElementById('deckName').value = deck.deckName;
+        document.getElementById('description').value = deck.description;
+        document.getElementById('deck-form').style.display = 'block'; // Show the form
+    } catch (error) {
+        console.error('Error fetching deck', error);
+    }
+};
+
+// Add event listener to form submit
+document.getElementById('deckForm').addEventListener('submit', (event) => {
+    event.preventDefault();
+    saveDeck();
+});
 
 // Delete a deck.
 const deleteCategory = async (deckId) => {
@@ -66,6 +125,5 @@ const deleteCategory = async (deckId) => {
         alert('there has been an error');
     }
 }
-
 
 window.onload = getDecks;
