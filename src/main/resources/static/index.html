@@ -4,44 +4,51 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Flashcards Dashboard</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/dashboard/dashboard-styles.css">
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>Flashcards Dashboard</h1>
+    <div class="container mt-4">
+        <!-- Header -->
+        <header class="text-center mb-4">
+            <h1 class="display-4">Flashcards Dashboard</h1>
         </header>
 
         <!-- navigation links -->
-         <nav>
-            <a href="deck-management.html">Manage Decks</a>
-            <a href="word-management.html">Manage Words</a>
-            <a href="category-management.html">Manage Categories</a>
+         <nav class="nav mb-4">
+            <a class="nav-link active" href="deck-management.html">Manage Decks</a>
+            <a class="nav-link" href="word-management.html">Manage Words</a>
+            <a class="nav-link" href="category-management.html">Manage Categories</a>
          </nav>
         
         <!-- overview section -->
-        <section id="overview">
-            <h2>overview</h2>
-            <div class="overview-item">
-                <h3>Total Decks: <span id="total-decks">0</span></h3>
-                <h3>Total Categories: <span id="total-categories">0</span></h3>
-                <h3>Recent Activity</h3>
-                <ul id="recent-activity"></ul>
+        <section id="overview" class="card p-4 mb-4 shadow-sm">
+            <h2  class="h4">Overview</h2>
+            <div class="d-flex justify-content-between align-items-center">
+                <div>Total Decks: <span id="total-decks" class="badge badge-primary">0</span></div>
+                <div>Total Categories: <span id="total-categories" class="badge badge-success">0</span></div>
             </div>
+            <h3 class="mt-4">Recent Activity</h3>
+            <ul id="recent-activity"  class="list-group mt-2"></ul>
         </section>
 
         <!-- deck list -->
-        <section id="deck-list">
-            <h2>Decks</h2>
-            <ul id="decks"></ul>
+        <section id="deck-list" class="card p-4 mb-4 shadow-sm">
+            <h2 class="h4">Decks</h2>
+            <ul id="decks" class="list-group mt-2"></ul>
         </section>
         
         <!-- category list -->
-        <section id="category-list">
-            <h2>Categories</h2>
-            <ul id="categories"></ul>
+        <section id="category-list" class="card p-4 mb-4 shadow-sm">
+            <h2 class="h4">Categories</h2>
+            <ul id="categories" class="list-group mt-2"></ul>
         </section>
     </div>
-    <script src="js/dashboard/dashboard.js"></script>
+     <!-- Bootstrap JS -->
+     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+     
+    <script src="js/dashboard/dashboard.js" type="module"></script>
 </body>
 </html>

@@ -13,6 +13,7 @@ const getDecks = async () => {
         console.log('There has been a problem with your fetch operation', error);
     }
 }
+
 // Display decks and add delete and edit btns.
 const displayDecks = (decks) => {
     const deckList = document.getElementById("deck-list");
@@ -105,12 +106,6 @@ const editDeck = async (deckId) => {
     }
 };
 
-// Add event listener to form submit
-document.getElementById('deckForm').addEventListener('submit', (event) => {
-    event.preventDefault();
-    saveDeck();
-});
-
 // Delete a deck.
 const deleteCategory = async (deckId) => {
     try {
@@ -125,5 +120,19 @@ const deleteCategory = async (deckId) => {
         alert('there has been an error');
     }
 }
+
+// Show the form for creating a new deck when "Create New Deck" button is clicked
+document.getElementById('create-deck-btn').addEventListener('click', () => {
+    showCreateDeckForm();
+});
+
+// Handle the form submission for saving a new or updated deck
+document.getElementById('deckForm').addEventListener('submit', (event) => {
+    event.preventDefault(); // Prevent the default form submission
+    saveDeck(); // Call the saveDeck function to save the new deck
+});
+
+
+
 
 window.onload = getDecks;

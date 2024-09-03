@@ -1,12 +1,12 @@
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
     margin: 0;
     padding: 0;
 }
 
 .container {
-    max-width: 1200px;
+    max-width: 960px;
     margin: 0 auto;
     padding: 20px;
 }
@@ -14,34 +14,37 @@ body {
 header {
     background-color: #007bff;
     color: white;
-    text-align: center;
-    padding: 10px 0;
-}
-
-h1, h2, h3 {
-    margin: 10px 0;
-}
-
-section {
-    background-color: white;
+    padding: 20px 0;
     border-radius: 5px;
-    padding: 20px;
-    margin: 20px 0;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.overview-item {
+.nav-link {
+    color: #007bff;
+    font-weight: bold;
+}
+
+.nav-link:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}
+
+.card {
+    background-color: white;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.list-group-item {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    border: none;
+    padding: 10px;
 }
 
-ul {
-    list-style: none;
-    padding: 0;
-}
-
-ul li {
-    padding: 5px 0;
-    border-bottom: 1px solid #ddd;
+.badge {
+    font-size: 1rem;
 }
