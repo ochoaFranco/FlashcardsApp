@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Decks</title>
+    <link rel="stylesheet" href="css/dashboard/dashboard-styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Manage Words</h1>
+            <button id="create-word-btn">Create New Word</button>
+        </header>
+        
+        <!-- navigation links -->
+        <nav>
+            <a href="index.html">Home</a>
+         </nav>
+
+        <!-- Word form -->
+        <div id="word-form" style="display: none;">
+            <h2>Create or Edit a word</h2>
+            <form id="wordForm">
+                <input type="hidden" id="wordId">
+                <label for="wordName">word Name:</label>
+                <input type="text" id="wordName" required>
+                <label for="meaning">Meaning:</label>
+                <textarea id="meaning" required></textarea>
+                <label for="difficulty">difficulty:</label>
+                <input type="text" id="difficulty" required>
+                <button type="submit">Save</button>
+            </form>
+        </div>
+
+        <!-- Word list -->
+        <section id="word-list">
+            <h2>Words</h2>
+        </section>
+    </div>
+    <script src="js/word-management/word-app.js" type="module"></script>
+</body>
+</html>
