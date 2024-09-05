@@ -93,7 +93,7 @@ const saveWord = async () => {
 const editWord = async (wordId) => {
     try {
         const response = await fetch(`http://127.0.0.1:8080/words/${wordId}`);
-        if (!response.ok) throw new Error('Failed to fetch deck');
+        if (!response.ok) throw new Error('Failed to fetch word');
 
         const word = await response.json();
         document.getElementById('wordId').value = word.wordId;
@@ -101,7 +101,7 @@ const editWord = async (wordId) => {
         document.getElementById('meaning').value = word.meaning;
         document.getElementById('word-form').style.display = 'block'; // Show the form
     } catch (error) {
-        console.error('Error fetching deck', error);
+        console.error('Error fetching word', error);
     }
 };
 
@@ -128,7 +128,7 @@ document.getElementById('create-word-btn').addEventListener('click', () => {
 });
 
 // Handle the form submission for saving a new or updated word
-document.getElementById('wordForm').addEventListener('submit', (event) => {
+document.getElementById('word-form').addEventListener('submit', (event) => {
     event.preventDefault(); // Prevent the default form submission
     saveWord(); // Call the saveDeck function to save the new deck
 });

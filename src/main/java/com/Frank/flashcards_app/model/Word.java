@@ -20,10 +20,8 @@ public class Word {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long wordId;
 
-    @NotEmpty
     private String meaning;
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
     private Difficulty difficulty;
 
     @NotEmpty(message = "Word name must not be empty")

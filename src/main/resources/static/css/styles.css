@@ -1,0 +1,86 @@
+/* General Styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa; /* Consistent background color */
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+.container {
+    max-width: 960px; /* Consistent max-width */
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Header Styles */
+header {
+    background-color: #34495e; /* Consistent background color */
+    color: #ecf0f1; /* Consistent text color */
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin: 20px auto; /* Centered header */
+    max-width: 1000px; /* Consistent max-width */
+}
+
+header h1 {
+    font-size: 2.5rem; /* Consistent font size */
+    margin: 0;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+/* Card Styles */
+.card {
+    background-color: white;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ddd;
+    max-width: 1000px; /* Consistent max-width for larger content areas */
+    margin: 0 auto; /* Centered cards */
+}
+
+/* Button Styles */
+.btn-primary, .btn-secondary {
+    background-color: #16a085;
+    border-color: #16a085;
+    color: #fff;
+}
+
+.btn-primary:hover, .btn-secondary:hover {
+    background-color: #1abc9c;
+    border-color: #1abc9c;
+    opacity: 0.8;
+}
+
+.btn-success {
+    background-color: #27ae60;
+    border-color: #27ae60;
+}
+
+.btn-success:hover {
+    background-color: #2ecc71;
+    border-color: #2ecc71;
+    opacity: 0.8;
+}
+
+/* List Group Item Styles */
+.list-group-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: none;
+    padding: 10px;
+    border-bottom: 1px solid #eaeaea;
+}
+
+/* Badge Styles */
+.badge {
+    font-size: 1rem;
+    background-color: #16a085;
+    color: #fff;
+}

@@ -18,6 +18,9 @@ const getCategories = async () => {
 const displayCategories = (categories) => {
     const categoryList = document.getElementById("category-list");
     
+    // Clear the existing content
+    categoryList.innerHTML = '';
+
     categories.forEach(category => {
         const div = document.createElement('div');
         div.className = 'category-item';
@@ -75,7 +78,7 @@ const saveCategory = async () => {
         const response = await fetch(url, {
             method,
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ categoryName})
+            body: JSON.stringify({ categoryName })
         });
 
         if (!response.ok) throw new Error('Failed to save category');
@@ -94,7 +97,7 @@ const editCategory = async (categoryId) => {
         if (!response.ok) throw new Error('Failed to fetch category');
 
         const category = await response.json();
-        document.getElementById('categoryId').value = category.categoryId;
+        document.getElementById('categoryId').value = category.id;
         document.getElementById('categoryName').value = category.categoryName;
         document.getElementById('category-form').style.display = 'block'; // Show the form
     } catch (error) {
@@ -110,18 +113,13 @@ const deleteCategory = async (categoryId) => {
         });
         if (!response.ok)
             console.log('an error has occurred');
-        alert('Category deleted successfully');
+        else
+            alert('Category deleted successfully');
         getCategories();
     } catch(error) {
         alert('there has been an error');
     }
 }
-
-
-
-
-
-
 
 // Show the form for creating a new category when "Create New category" button is clicked
 document.getElementById('create-category-btn').addEventListener('click', () => {
@@ -129,7 +127,7 @@ document.getElementById('create-category-btn').addEventListener('click', () => {
 });
 
 // Handle the form submission for saving a new or updated category
-document.getElementById('categoryForm').addEventListener('submit', (event) => {
+document.getElementById('category-form').addEventListener('submit', (event) => {
     event.preventDefault(); // Prevent the default form submission
     saveCategory(); // Call the saveDeck function to save the new deck
 });
