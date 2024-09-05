@@ -18,14 +18,13 @@ const getDecks = async () => {
 const displayDecks = (decks) => {
     const deckList = document.getElementById("deck-list");
     deckList.innerHTML = '';
-    console.log(decks);
     
     decks.forEach(deck => {
         const div = document.createElement('div');
         div.className = 'deck-item';
         div.innerHTML = `
             <div class = "deck-header"> 
-                <h4><a href="desk-description.html?id=${deck.deckId}">${deck.deckName}</a> (${deck.words.length} words)</h4>
+                <h4><a href="deck-description.html?id=${deck.deckId}">${deck.deckName}</a> (${deck.words.length} words)</h4>
             </div>
             <button class="btn btn-edit" data-deck-id="${deck.deckId}">Edit</button>
             <button class="btn btn-delete" data-deck-id="${deck.deckId}">Delete</button>

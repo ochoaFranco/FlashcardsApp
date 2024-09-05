@@ -13,7 +13,7 @@ const getDeckDetails = async () => {
         const deck = await response.json();
         displayDeckDetails(deck);
     } catch(error) {
-        console.error('There was a problem with fetching task details:', error)
+        console.error('There was a problem with fetching deck details:', error)
     }
 };
 
@@ -23,7 +23,7 @@ const displayDeckDetails = (deck) => {
     // check if there are words associated with the deck.
     if (deck.words && deck.words.length > 0) {
         deck.words.forEach(word => {
-            wordsHTML += `<p>${word.wordName} - ${word.meaning}</p>`
+            wordsHTML += `<a href="word-description.html?id=${word.wordId}"> <p>${word.wordName}</a> - ${word.meaning}</p>`
         });
     } else {
         wordsHTML = `<p>No words available for this deck.</p>`;

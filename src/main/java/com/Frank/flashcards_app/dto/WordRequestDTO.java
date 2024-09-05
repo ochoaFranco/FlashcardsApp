@@ -22,8 +22,6 @@ public class WordRequestDTO {
     @NotEmpty(message = "Word name must not be empty")
     @Size(max = 30, message = "Word name must not exceed 30 characters")
     private String wordName;
-
-    @NotNull(message = "Difficulty must not be null")
     private Difficulty difficulty;
 
     @NotEmpty(message = "Meaning must not be empty")

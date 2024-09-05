@@ -31,10 +31,12 @@ function updateDecks(decks) {
 
     decks.forEach(deck => {
         const li = document.createElement('li');
-        li.textContent = `${deck.deckName} (${deck.words.length} words)`;
+        // Use innerHTML to insert HTML content
+        li.innerHTML = `<a href="deck-description.html?id=${deck.deckId}">${deck.deckName}</a>(${deck.words.length} words)`;
         decksList.appendChild(li);
     });
 }
+
 
 function updateCategories(categories) {
     const categoriesList = document.getElementById('categories');
