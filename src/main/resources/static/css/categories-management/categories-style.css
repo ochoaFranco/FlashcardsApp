@@ -1,0 +1,189 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+
+/* Header Styles */
+header {
+    background-color: #34495e;
+    color: #ecf0f1;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+header button {
+    margin-top: 15px;
+    background-color: #16a085;
+    border: none;
+    padding: 10px 20px;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+header button:hover {
+    background-color: #025e4b;
+    opacity: 0.9;
+}
+
+
+header h1 {
+    font-size: 2.5rem;
+    margin: 0;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+nav {
+    margin-bottom: 20px;
+    text-align: center; /* Center navigation items */
+}
+
+nav a {
+    color: #16a085;
+    font-weight: bold;
+    margin: 0 15px; /* Spacing between links */
+    text-decoration: none;
+}
+
+nav a:hover {
+    color: #1abc9c;
+    text-decoration: underline;
+}
+
+/* Word Link Styles */
+.word-link {
+    color: #16a085; 
+    text-decoration: none; 
+}
+
+.word-link:hover {
+    color: #025e4b; 
+    text-decoration: underline; 
+}
+
+/* Form Styles */
+#category-form {
+    background-color: white;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ddd;
+    max-width: 600px;
+    margin: 0 auto;
+    display: none; /* Hidden by default */
+}
+
+#category-form h2 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
+#categoryForm label {
+    display: block;
+    margin: 10px 0 5px;
+    font-weight: bold;
+}
+
+
+#categoryForm input[type="text"],
+#categoryForm textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+#categoryForm button[type="submit"] {
+    background-color: #16a085;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+#categoryForm button[type="submit"]:hover {
+    background-color: #025e4b;
+    opacity: 0.9;
+}
+
+
+#category-list {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+#category-list h2 {
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Category Item Styles */
+.category-item {
+    background-color: white;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ddd;
+}
+
+.category-item:hover {
+    background-color: #f1f1f1;
+}
+
+/* Category Name */
+.category-name {
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    margin-bottom: 15px; 
+}
+
+
+/* Button Styles */
+.btn {
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-right: 10px;
+}
+.btn-edit,
+.btn-delete {
+    background-color: #16a085; /* Default color */
+    border: none;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.btn-delete {
+    background-color: #e74c3c; /* Red for delete button */
+}
+
+.btn-edit:hover,
+.btn-delete:hover {
+    opacity: 0.9; /* Slight transparency on hover */
+}
+
+/* Center Text */
+.text-center {
+    text-align: center;
+    margin-top: 20px;
+}

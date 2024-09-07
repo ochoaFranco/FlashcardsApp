@@ -3,46 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manage Decks</title>
-    <link rel="stylesheet" href="css/deck-management/deck-styles.css">
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <title>Manage Categories</title>
+    <link rel="stylesheet" href="css/categories-management/categories-style.css">
     <link rel="stylesheet" href="css/styles.css">
-
 </head>
 <body>
-    <div class="container  mt-4">
-        <header class="text-center mb-4">
-            <h1 class="display-4">Manage Categories</h1>
-            <button id="create-category-btn"  class="btn btn-primary">Create New Category</button>
+    <div class="container mt-4">
+        <header>
+            <h1>Manage Categories</h1>
+            <button id="create-category-btn">Create New Category</button>
         </header>
-        
-        <!-- navigation links -->
-        <nav  class="nav mb-4">
-            <a href="index.html">Home</a>
-         </nav>
 
-        <!-- Deck form -->
-        <div id="category-form" class="card p-4 mb-4 shadow-sm" style="display: none;">
-            <h2 class="h4">Create or Edit Category</h2>
+        <!-- Navigation links -->
+        <nav>
+            <a href="index.html">Home</a>
+        </nav>
+
+        <!-- Category form -->
+        <div id="category-form" style="display: none;">
+            <h2>Create or Edit Category</h2>
             <form id="categoryForm">
                 <input type="hidden" id="categoryId">
                 <div class="form-group">
                     <label for="categoryName">Category Name:</label>
-                    <input type="text" id="categoryName" class="form-control" required>
+                    <input type="text" id="categoryName" required>
                 </div>
-                <button type="submit" class="btn btn-success">Save</button>
+                <button type="submit">Save</button>
             </form>
         </div>
 
-        <!-- Deck list -->
-        <section id="category-list" class="card p-4 mb-4 shadow-sm">
+        <!-- Category list -->
+        <section id="category-list">
             <h2 class="h4">Categories</h2>
         </section>
     </div>
-    <!-- Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <!-- JS -->
     <script src="js/categories/categories-app.js" type="module"></script>
 </body>

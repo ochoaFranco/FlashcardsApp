@@ -25,12 +25,13 @@ const displayCategories = (categories) => {
         const div = document.createElement('div');
         div.className = 'category-item';
         div.innerHTML = `
-            <div class = "category-header"> 
-                <h4>${category.categoryName}</h4>
+            <span class="category-name">${category.categoryName}</span>
+            <div class="button-group">
+                <button class="btn btn-edit" data-category-id="${category.id}">Edit</button>
+                <button class="btn btn-delete" data-category-id="${category.id}">Delete</button>
             </div>
-            <button class="btn btn-edit" data-category-id="${category.id}">Edit</button>
-            <button class="btn btn-delete" data-category-id="${category.id}">Delete</button>
         `;
+
         const hr = document.createElement('hr');
         categoryList.appendChild(hr);
         categoryList.appendChild(div)

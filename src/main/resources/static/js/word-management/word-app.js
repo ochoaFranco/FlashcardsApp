@@ -24,8 +24,8 @@ const displayWords = (words) => {
         const div = document.createElement('div');
         div.className = 'word-item';
         div.innerHTML = `
-            <div class = "word-header"> 
-                <h4><a href="word-description.html?id=${word.wordId}">${word.wordName}</a> (${word.deckNames.length} decks)</h4>
+             <div class="word-header"> 
+                <h4><a href="word-description.html?id=${word.wordId}" class="word-link">${word.wordName}</a> (${word.deckNames.length} decks)</h4>
             </div>
             <button class="btn btn-edit" data-word-id="${word.wordId}">Edit</button>
             <button class="btn btn-delete" data-word-id="${word.wordId}">Delete</button>
