@@ -23,19 +23,12 @@ const displayDecks = (decks) => {
         const div = document.createElement('div');
         div.className = 'deck-item';
         div.innerHTML = `
-        <div class="deck-header d-flex justify-content-between align-items-center mb-2">
-            <h4 class="m-0"><a href="deck-description.html?id=${deck.deckId}" title="View details of ${deck.deckName}">${deck.deckName}</a></h4>
-            <span class="text-muted">(${deck.words.length} words)</span>
-        </div>
-        <div class="deck-actions text-end">
-            <button class="custom-button btn-edit" data-deck-id="${deck.deckId}">
-                <i class="fas fa-edit"></i> Edit
-            </button>
-            <button class="custom-button btn-delete" data-deck-id="${deck.deckId}">
-                <i class="fas fa-trash-alt"></i> Delete
-            </button>
-        </div>
-    `;
+             <div class="deck-header"> 
+                <h4><a href="deck-description.html?id=${deck.deckId}" class="deck-link">${deck.deckName}</a>  (${deck.words.length} words)</h4>
+            </div>
+            <button class="btn btn-edit" data-deck-id="${deck.deckId}">Edit</button>
+            <button class="btn btn-delete" data-deck-id="${deck.deckId}">Delete</button>
+        `;
         const hr = document.createElement('hr');
         deckList.appendChild(hr);
         deckList.appendChild(div)

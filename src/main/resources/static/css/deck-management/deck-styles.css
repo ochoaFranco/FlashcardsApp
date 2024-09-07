@@ -34,8 +34,8 @@ header button {
     border-radius: 5px;
     cursor: pointer;
     font-size: 1rem;
-    transition: background-color 0.3s ease;
 }
+
 
 header button:hover {
     background-color: #025e4b;
@@ -43,10 +43,9 @@ header button:hover {
 }
 
 /* Navigation Styles */
-.nav {
+nav {
     margin-bottom: 20px;
-    justify-content: center;
-    text-align: center;
+    text-align: center; /* Center navigation items */
 }
 
 .nav a {
@@ -61,6 +60,19 @@ header button:hover {
     text-decoration: underline;
 }
 
+
+/* Word Link Styles */
+.deck-link {
+    color: #16a085; 
+    text-decoration: none; 
+}
+
+.deck-link:hover {
+    color: #025e4b; 
+    text-decoration: underline; 
+}
+
+
 /* Card Styles */
 .card {
     background-color: white;
@@ -74,15 +86,15 @@ header button:hover {
 }
 
 /* Form Styles */
-#category-form {
+#deck-form {
     display: none; /* Hidden by default */
 }
 
-#categoryForm .form-group {
+#deckForm .form-group {
     margin-bottom: 20px;
 }
 
-#categoryForm input[type="text"] {
+#deckForm input[type="text"] {
     width: 100%;
     padding: 10px;
     margin-top: 5px;
@@ -92,7 +104,7 @@ header button:hover {
 }
 
 /* Button Styles */
-#categoryForm button[type="submit"] {
+#deckForm button[type="submit"] {
     background-color: #28a745; /* Green */
     border: none;
     padding: 10px 20px;
@@ -103,12 +115,11 @@ header button:hover {
     transition: background-color 0.3s ease;
 }
 
-#categoryForm button[type="submit"]:hover {
+#deckForm button[type="submit"]:hover {
     background-color: #218838; /* Darker Green */
 }
 
-/* Category List Styles */
-#category-list {
+#deck-list {
     max-width: 600px;
     margin: 0 auto;
 }
@@ -119,8 +130,7 @@ header button:hover {
     margin-top: 20px;
 }
 
-/* Category Item Styles */
-.category-item {
+.deck-item {
     background-color: white;
     border: 1px solid #ddd;
     border-radius: 8px;
@@ -131,55 +141,51 @@ header button:hover {
     margin: 0 auto;
 }
 
-/* Category Header Styles */
-.category-header {
+.deck-header {
     font-size: 1.25rem;
     color: #34495e;
     margin-bottom: 10px;
 }
 
-.category-header h4 {
+.deck-item:hover {
+    background-color: #f1f1f1;
+}
+
+
+.deck-header h4 {
     margin: 0;
 }
 
-/* Category Actions Styles */
-.button-group {
-    display: flex;
-    justify-content: flex-end;
-    gap: 10px;
-}
 
-.btn-edit {
-    background-color: #3498db;
-    color: #fff;
+.btn {
     padding: 8px 16px;
-    font-size: 14px;
+    border-radius: 4px;
+    font-size: 1rem;
     cursor: pointer;
-    border: none;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
+    margin-right: 10px;
 }
-
-.btn-edit:hover {
-    background-color: #2980b9;
+.btn-edit,
+.btn-delete {
+    background-color: #16a085; /* Default color */
+    border: none;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
 }
 
 .btn-delete {
-    background-color: #e74c3c;
-    color: #fff;
-    padding: 8px 16px;
-    font-size: 14px;
-    cursor: pointer;
-    border: none;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
+    background-color: #e74c3c; /* Red for delete button */
 }
 
+.btn-edit:hover,
 .btn-delete:hover {
-    background-color: #c0392b;
+    opacity: 0.9; /* Slight transparency on hover */
 }
 
-/* Button Hover Effects */
-button {
-    transition: all 0.3s ease;
+/* Center Text */
+.text-center {
+    text-align: center;
+    margin-top: 20px;
 }
