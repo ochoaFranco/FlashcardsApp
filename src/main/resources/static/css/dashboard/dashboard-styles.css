@@ -57,3 +57,14 @@ header {
     background-color: #16a085; /* Matching the primary color */
     color: #fff; /* Ensure text is readable */
 }
+
+/* deck Link Styles */
+.deck-link {
+    color: #038a6f; 
+    text-decoration: none; 
+}
+
+.deck-link:hover {
+    color: #025e4b; 
+    text-decoration: underline; 
+}

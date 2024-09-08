@@ -23,7 +23,7 @@ const displayDeckDetails = (deck) => {
     // check if there are words associated with the deck.
     if (deck.words && deck.words.length > 0) {
         deck.words.forEach(word => {
-            wordsHTML += `<a href="word-description.html?id=${word.wordId}"> <p>${word.wordName}</a> - ${word.meaning}</p>`
+            wordsHTML += `<a href="word-description.html?id=${word.wordId}" class="deck-link"> <p>${word.wordName}</a> - ${word.meaning}</p>`
         });
     } else {
         wordsHTML = `<p>No words available for this deck.</p>`;

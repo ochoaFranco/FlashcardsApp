@@ -33,6 +33,7 @@ header h1 {
     letter-spacing: 1px;
 }
 
+
 /* Card Styles */
 .card {
     background-color: white;
@@ -44,6 +45,8 @@ header h1 {
     max-width: 600px; 
     margin: 20px auto; /* Center cards */
 }
+
+
 
 /* Button Styles */
 .btn-primary, .btn-secondary, .btn-success {
@@ -105,18 +108,4 @@ header h1 {
 .text-center {
     text-align: center;
     margin-top: 20px;
-}
-
-
-
-
-/* Word Link Styles */
-.deck-link {
-    color: #16a085; 
-    text-decoration: none; 
-}
-
-.deck-link:hover {
-    color: #025e4b; 
-    text-decoration: underline; 
 }
