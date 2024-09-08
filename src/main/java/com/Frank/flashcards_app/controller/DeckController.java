@@ -43,8 +43,6 @@ public class DeckController {
         return new ResponseEntity<>(deckService.getFlashcards(id), HttpStatus.OK);
     }
 
-
-
     // update a deck by its ID.
     @PutMapping("/edit/{id}")
     public ResponseEntity<DeckResponseDTO> editDeck(@PathVariable Long id, @Valid @RequestBody DeckRequestDTO deckRequestDTO) {

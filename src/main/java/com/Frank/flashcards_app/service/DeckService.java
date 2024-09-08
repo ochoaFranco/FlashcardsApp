@@ -14,6 +14,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -112,8 +113,10 @@ public class DeckService implements IDeckService {
         // throw an error if deck does not exist.
         if (optionalDeck.isEmpty()) throw new NotFoundException("Deck not found!");
         List<Word> wordList = optionalDeck.get().getWordList();
+        LocalDate today = LocalDate.now();
         return wordList.stream()
                 .map(word -> modelMapper.map(word, WordResponseDTO.class))
+                .filter(word -> word.getNextReviewDue() != null && word.getNextReviewDue().isEqual(today)) // ensures that is displaying words for today.
                 .collect(Collectors.toList());
     }
 }

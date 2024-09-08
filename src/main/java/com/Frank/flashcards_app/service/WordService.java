@@ -15,6 +15,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -149,6 +150,15 @@ public class WordService implements IWordService {
         }
         Word word = optionalWord.get();
         word.setDifficulty(difficulty);
+        word.setLastReviewed(LocalDate.now());
+        // update review time
+        if (difficulty == Difficulty.normal) {
+            word.setNextReviewDue(LocalDate.now().plusDays(2));
+        } else if (difficulty == Difficulty.difficult) {
+            word.setNextReviewDue(LocalDate.now().plusDays(1));
+        } else {
+            word.setNextReviewDue(LocalDate.now());
+        }
         wordRepo.save(word);
         return modelMapper.map(word, WordResponseDTO.class);
     }

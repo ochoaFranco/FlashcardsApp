@@ -43,12 +43,6 @@ public class WordController {
         return new ResponseEntity<>(wordService.editWord(id, wordRequestDTO), HttpStatus.OK);
     }
 
-    // update word's difficulty
-     @PatchMapping("/edit/difficulty/{id}")
-     public ResponseEntity<WordResponseDTO> editWordDifficulty(@PathVariable Long id, @RequestParam Difficulty difficulty) {
-        return new ResponseEntity<>(wordService.updateDifficulty(id, difficulty), HttpStatus.OK);
-     }
-
     // Delete a word by its ID.
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> deleteWord(@PathVariable Long id) {
@@ -68,5 +62,11 @@ public class WordController {
     public ResponseEntity<WordResponseDTO> assignDeck(@PathVariable Long id, @RequestParam Long deckId) {
         WordResponseDTO updatedWord = wordService.assignDeck(id, deckId);
         return new ResponseEntity<>(updatedWord, HttpStatus.OK);
+    }
+
+    // update word's difficulty and due date.
+    @PatchMapping("/edit/difficulty/{id}")
+    public ResponseEntity<WordResponseDTO> editWordDifficulty(@PathVariable Long id, @RequestParam Difficulty difficulty) {
+        return new ResponseEntity<>(wordService.updateDifficulty(id, difficulty), HttpStatus.OK);
     }
 }
