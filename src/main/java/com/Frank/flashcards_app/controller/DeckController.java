@@ -2,6 +2,7 @@ package com.Frank.flashcards_app.controller;
 
 import com.Frank.flashcards_app.dto.DeckRequestDTO;
 import com.Frank.flashcards_app.dto.DeckResponseDTO;
+import com.Frank.flashcards_app.dto.WordResponseDTO;
 import com.Frank.flashcards_app.service.IDeckService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +36,14 @@ public class DeckController {
     public ResponseEntity<DeckResponseDTO> getDeckById(@PathVariable Long id) {
         return new ResponseEntity<>(deckService.getDeckById(id), HttpStatus.OK);
     }
+
+    // Read all words.
+    @GetMapping("/{id}/flashcards")
+    public ResponseEntity<List<WordResponseDTO>> getFlashcards(@PathVariable Long id) {
+        return new ResponseEntity<>(deckService.getFlashcards(id), HttpStatus.OK);
+    }
+
+
 
     // update a deck by its ID.
     @PutMapping("/edit/{id}")

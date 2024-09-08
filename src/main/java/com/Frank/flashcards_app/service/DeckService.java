@@ -2,6 +2,8 @@ package com.Frank.flashcards_app.service;
 
 import com.Frank.flashcards_app.dto.DeckRequestDTO;
 import com.Frank.flashcards_app.dto.DeckResponseDTO;
+import com.Frank.flashcards_app.dto.WordRequestDTO;
+import com.Frank.flashcards_app.dto.WordResponseDTO;
 import com.Frank.flashcards_app.exception.DuplicateNameException;
 import com.Frank.flashcards_app.exception.NotFoundException;
 import com.Frank.flashcards_app.model.Deck;
@@ -102,5 +104,16 @@ public class DeckService implements IDeckService {
         deckRepo.save(deck);
         wordRepo.save(word);
         return modelMapper.map(deck, DeckResponseDTO.class);
+    }
+    // get all flashcards from a given deck id.
+    @Override
+    public List<WordResponseDTO> getFlashcards(Long deckId) {
+        Optional<Deck> optionalDeck = deckRepo.findById(deckId);
+        // throw an error if deck does not exist.
+        if (optionalDeck.isEmpty()) throw new NotFoundException("Deck not found!");
+        List<Word> wordList = optionalDeck.get().getWordList();
+        return wordList.stream()
+                .map(word -> modelMapper.map(word, WordResponseDTO.class))
+                .collect(Collectors.toList());
     }
 }

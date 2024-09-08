@@ -2,6 +2,7 @@ package com.Frank.flashcards_app.service;
 
 import com.Frank.flashcards_app.dto.DeckRequestDTO;
 import com.Frank.flashcards_app.dto.DeckResponseDTO;
+import com.Frank.flashcards_app.dto.WordResponseDTO;
 
 import java.util.List;
 
@@ -16,5 +17,8 @@ public interface IDeckService {
     DeckResponseDTO editDeck(Long id, DeckRequestDTO deckRequestDTO);
     // Delete a deck
     void deleteDeck(Long id);
+    // Assign a word.
     DeckResponseDTO assignWord(Long deckId, Long wordId);
+    // Get all words from a certain deck.
+    List<WordResponseDTO> getFlashcards(Long deckId);
 }
