@@ -20,6 +20,6 @@ public class WordResponseDTO {
     private Difficulty difficulty;
     private List<String> categoryNames;
     private List<String> deckNames;
-    private LocalDateTime lastReviewed;
-    private LocalDateTime nextReviewDue;
+    private LocalDate lastReviewed;
+    private LocalDate nextReviewDue;
 }

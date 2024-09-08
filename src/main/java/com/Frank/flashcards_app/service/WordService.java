@@ -82,6 +82,14 @@ public class WordService implements IWordService {
         Optional<Word> optionalWord = wordRepo.findById(id);
         if (optionalWord.isEmpty())
             throw new NotFoundException("Word not found!");
+
+        Word word = optionalWord.get();
+        // remove the word from each deck that contains it.
+        word.getDeckList()
+                .forEach(deck -> {
+                    deck.getWordList().remove(word);
+                    deckRepo.save(deck); // actualizo la tabla intermedia.
+                });
         wordRepo.deleteById(id);
     }
 

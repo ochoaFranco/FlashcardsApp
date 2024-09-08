@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -27,8 +28,8 @@ public class Word {
     @NotEmpty(message = "Word name must not be empty")
     @Column(unique = true, length = 30, nullable = false)
     private String wordName;
-    private LocalDateTime lastReviewed;
-    private LocalDateTime nextReviewDue;
+    private LocalDate lastReviewed;
+    private LocalDate nextReviewDue = LocalDate.now();
     @ManyToMany(mappedBy = "wordList")
     private List<Deck> deckList;
     @ManyToMany
