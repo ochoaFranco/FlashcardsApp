@@ -28,6 +28,7 @@ const displayDecks = (decks) => {
             </div>
             <button class="btn btn-edit" data-deck-id="${deck.deckId}">Edit</button>
             <button class="btn btn-delete" data-deck-id="${deck.deckId}">Delete</button>
+            <button class="btn btn-words" data-deck-id="${deck.deckId}">Add words</button>
         `;
         const hr = document.createElement('hr');
         deckList.appendChild(hr);
@@ -46,10 +47,47 @@ const displayDecks = (decks) => {
     document.querySelectorAll('.btn-delete').forEach(button => {
         button.addEventListener('click', () => {
             const deckId = button.getAttribute('data-deck-id');
-            deleteCategory(deckId);
+            deleteDeck(deckId);
+        });
+    });
+
+    // Add event listeners to "Add words" button
+    document.querySelectorAll('.btn-words').forEach(button => {
+        button.addEventListener('click', async () => {
+            const deckId = button.getAttribute('data-deck-id');
+            await showAddWordForm(deckId);
         });
     });
 }
+
+// function for displaying the form when click add words.
+const showAddWordForm = async (deckId) => {
+    document.getElementById('wordDeckId').value = deckId;
+    document.getElementById('add-word-form').style.display = 'block'; // Show the form
+    await fetchCategories(); // Fetch and populate the categories
+};
+
+
+// fetch categories from the server.
+const fetchCategories = async () => {
+    try {
+        const response = await fetch('http://127.0.0.1:8080/categories'); 
+        if (!response.ok) throw new Error('Failed to fetch categories');
+
+        const categories = await response.json();
+        const categorySelect = document.getElementById('category');
+        categorySelect.innerHTML = ''; // Clear any existing options
+
+        categories.forEach(category => {
+            const option = document.createElement('option');
+            option.value = category.categoryId;
+            option.textContent = category.categoryName;
+            categorySelect.appendChild(option);
+        });
+    } catch (error) {
+        console.error('Error fetching categories', error);
+    }
+};
 
 // show the form for creating a new deck.
 const showCreateDeckForm = () => {
@@ -88,6 +126,52 @@ const saveDeck = async () => {
     }
 };
 
+// Add a word to an existing deck.
+const addWordToDeck = async () => {
+    const deckId = document.getElementById('wordDeckId').value;
+    const wordId = document.getElementById('word').value;
+
+    try {
+        const response = await fetch(`http://127.0.0.1:8080/decks/assign-word/${deckId}?wordId=${wordId}`, {
+            method: 'PATCH',
+            headers: { 'Content-Type': 'application/json' },
+        });
+
+        if (!response.ok) throw new Error('Failed to add word to deck');
+        
+        alert('Word added successfully!');
+        document.getElementById('add-word-form').style.display = 'none'; // Hide the form
+        await getDecks(); // Refresh the list of decks
+    } catch (error) {
+        console.error('Error adding word to deck', error);
+    }
+};
+
+// Populate categories and words dynamically
+async function populateCategoriesAndWords() {
+    try {
+        const categoriesResponse = await fetch('http://127.0.0.1:8080/categories'); // Adjust endpoint
+        const wordsResponse = await fetch('http://127.0.0.1:8080/words'); // Adjust endpoint
+
+        if (!categoriesResponse.ok || !wordsResponse.ok) throw new Error('Failed to fetch data');
+
+        const categories = await categoriesResponse.json();
+        const words = await wordsResponse.json();
+
+        const categorySelect = document.getElementById('category');
+        const wordSelect = document.getElementById('word');
+
+        // Populate categories
+        categorySelect.innerHTML = categories.map(category => `<option value="${category.id}">${category.name}</option>`).join('');
+
+        // Populate words 
+        wordSelect.innerHTML = words.map(word => `<option value="${word.wordId}">${word.wordName}</option>`).join('');
+
+    } catch (error) {
+        console.error('Error fetching categories or words', error);
+    }
+}
+
 
 // Edit an existing deck
 const editDeck = async (deckId) => {
@@ -106,7 +190,7 @@ const editDeck = async (deckId) => {
 };
 
 // Delete a deck.
-const deleteCategory = async (deckId) => {
+const deleteDeck = async (deckId) => {
     try {
         const response = await fetch(`http://127.0.0.1:8080/decks/delete/${deckId}`, {
             method: 'DELETE',
@@ -131,7 +215,16 @@ document.getElementById('deckForm').addEventListener('submit', (event) => {
     saveDeck(); // Call the saveDeck function to save the new deck
 });
 
+// Handle the "Add Word" Form Submission
+document.getElementById('wordForm').addEventListener('submit', async (event) => {
+    event.preventDefault();
+    await addWordToDeck();
+});
 
 
 
-window.onload = getDecks;
+
+window.onload = async () => {
+    await getDecks();
+    await populateCategoriesAndWords();
+};

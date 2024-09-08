@@ -37,6 +37,27 @@
             </form>
         </div>
 
+        <!-- Word Form -->
+        <div id="add-word-form" class="card p-4 mb-4 shadow-sm" style="display: none;">
+            <h2 class="h4">Add Word to Deck</h2>
+            <form id="wordForm">
+                <input type="hidden" id="wordDeckId">
+                <div class="form-group">
+                    <label for="word">Word:</label>
+                    <select id="word" class="form-control" required>
+                        <!-- Words will be dynamically added here -->
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="category">Category:</label>
+                    <select id="category" class="form-control" required>
+                        <!-- Categories will be dynamically added here -->
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-success">Add Word</button>
+            </form>
+        </div>
+
         <!-- Deck list -->
         <section id="deck-list" class="card p-4 mb-4 shadow-sm">
             <h2 class="h4">Decks</h2>

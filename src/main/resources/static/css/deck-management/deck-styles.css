@@ -165,7 +165,8 @@ nav {
     margin-right: 10px;
 }
 .btn-edit,
-.btn-delete {
+.btn-delete,
+.btn-words {
     background-color: #16a085; /* Default color */
     border: none;
     color: white;
@@ -175,12 +176,17 @@ nav {
     font-size: 0.9rem;
 }
 
+.btn-words{
+    background-color: #f1950b; /* Default color */
+}
+
 .btn-delete {
     background-color: #e74c3c; /* Red for delete button */
 }
 
 .btn-edit:hover,
-.btn-delete:hover {
+.btn-delete:hover,
+.btn-words:hover {
     opacity: 0.9; /* Slight transparency on hover */
 }
 
