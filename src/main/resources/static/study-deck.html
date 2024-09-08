@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study Deck</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/study/study.css">
+</head>
+<body>
+    <div class="container mt-4">
+        <header class="text-center mb-4">
+            <h1 class="display-4">Study Deck</h1>
+        </header>
+
+        <section id="flashcard-section" class="card p-4 mb-4 shadow-sm">
+            <div id="flashcard" class="flashcard"></div>
+            <div id="flashcard-answer" class="flashcard-answer"></div>
+            <button id="reveal-answer" class="btn btn-primary mt-2">Reveal Answer</button>
+            <button id="next-card" class="btn btn-secondary mt-2">Next Card</button>
+            <div id="difficulty-rating" class="mt-3">
+                <button id="easy-btn" class="btn btn-success">Easy</button>
+                <button id="medium-btn" class="btn btn-warning">Medium</button>
+                <button id="hard-btn" class="btn btn-danger">Hard</button>
+            </div>
+        </section>
+    </div>
+    
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="js/study-deck/study.js" type="module"></script>
+</body>
+</html>

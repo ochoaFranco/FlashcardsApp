@@ -68,3 +68,20 @@ header {
     color: #025e4b; 
     text-decoration: underline; 
 }
+
+.deck-study-link {
+    color: #d9534f; /* A contrasting red color */
+    text-decoration: none; 
+    font-weight: bold; /* Makes the text stand out */
+}
+
+.deck-study-link::before {
+    content: "📚 "; /* Emoji icon for a book */
+    margin-right: 5px; /* Adds some space between icon and text */
+}
+
+
+.deck-study-link:hover {
+    color: #c9302c; /* A darker shade for hover effect */
+    text-decoration: underline; 
+}

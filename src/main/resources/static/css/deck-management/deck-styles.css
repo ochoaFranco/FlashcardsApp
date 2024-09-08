@@ -86,11 +86,11 @@ nav {
 }
 
 /* Form Styles */
-#deck-form {
+#deck-form, #add-word-form {
     display: none; /* Hidden by default */
 }
 
-#deckForm .form-group {
+#deckForm, #add-word-form .form-group {
     margin-bottom: 20px;
 }
 
@@ -115,7 +115,22 @@ nav {
     transition: background-color 0.3s ease;
 }
 
+#add-word-form button[type="submit"] {
+    background-color: #28a745; /* Green */
+    border: none;
+    padding: 10px 20px;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
 #deckForm button[type="submit"]:hover {
+    background-color: #218838; /* Darker Green */
+}
+
+#add-word-form button[type="submit"]:hover {
     background-color: #218838; /* Darker Green */
 }
 
@@ -194,4 +209,42 @@ nav {
 .text-center {
     text-align: center;
     margin-top: 20px;
+}
+
+/* Style the select element */
+#word {
+    width: 100%; /* Make the select box full width */
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f8f9fa;
+    font-size: 1rem;
+    color: #333;
+    appearance: none; /* Remove the default arrow */
+    transition: border-color 0.3s ease;
+}
+
+#word:focus {
+    border-color: #16a085; /* Change border color on focus */
+    outline: none; /* Remove outline */
+}
+
+/* Style the select options */
+#word option {
+    padding: 10px;
+    font-size: 1rem;
+    color: #333;
+    background-color: #ffffff;
+}
+
+/* Change the color of the hovered option */
+#word option:hover {
+    background-color: #f0f0f0;
+    color: #16a085;
+}
+
+/* Optional: Customize the appearance of the arrow (down caret) */
+#word::-ms-expand {
+    display: none; /* For IE */
 }

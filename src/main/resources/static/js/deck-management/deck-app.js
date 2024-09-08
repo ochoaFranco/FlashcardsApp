@@ -148,21 +148,15 @@ const addWordToDeck = async () => {
 };
 
 // Populate categories and words dynamically
-async function populateCategoriesAndWords() {
+async function populateWords() {
     try {
-        const categoriesResponse = await fetch('http://127.0.0.1:8080/categories'); // Adjust endpoint
-        const wordsResponse = await fetch('http://127.0.0.1:8080/words'); // Adjust endpoint
+        const wordsResponse = await fetch('http://127.0.0.1:8080/words'); 
 
-        if (!categoriesResponse.ok || !wordsResponse.ok) throw new Error('Failed to fetch data');
+        if (!wordsResponse.ok) throw new Error('Failed to fetch data');
 
-        const categories = await categoriesResponse.json();
         const words = await wordsResponse.json();
 
-        const categorySelect = document.getElementById('category');
         const wordSelect = document.getElementById('word');
-
-        // Populate categories
-        categorySelect.innerHTML = categories.map(category => `<option value="${category.id}">${category.name}</option>`).join('');
 
         // Populate words 
         wordSelect.innerHTML = words.map(word => `<option value="${word.wordId}">${word.wordName}</option>`).join('');
@@ -226,5 +220,5 @@ document.getElementById('wordForm').addEventListener('submit', async (event) => 
 
 window.onload = async () => {
     await getDecks();
-    await populateCategoriesAndWords();
+    await populateWords();
 };

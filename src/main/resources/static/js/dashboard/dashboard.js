@@ -32,7 +32,7 @@ function updateDecks(decks) {
     decks.forEach(deck => {
         const li = document.createElement('li');
         // Use innerHTML to insert HTML content
-        li.innerHTML = `<a href="deck-description.html?id=${deck.deckId}" class="deck-link">${deck.deckName} </a>(${deck.words.length} words)`;
+        li.innerHTML = `<a href="deck-description.html?id=${deck.deckId}" class="deck-link">${deck.deckName}</a> <a href="study-deck.html?id=${deck.deckId}" class="deck-study-link">Study</a>`;
         decksList.appendChild(li);
     });
 }
