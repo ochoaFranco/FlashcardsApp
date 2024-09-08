@@ -5,6 +5,7 @@ import com.Frank.flashcards_app.dto.WordResponseDTO;
 import com.Frank.flashcards_app.exception.NotFoundException;
 import com.Frank.flashcards_app.model.Category;
 import com.Frank.flashcards_app.model.Deck;
+import com.Frank.flashcards_app.model.Difficulty;
 import com.Frank.flashcards_app.model.Word;
 import com.Frank.flashcards_app.repository.ICategoryRepository;
 import com.Frank.flashcards_app.repository.IDeckRepository;
@@ -137,5 +138,18 @@ public class WordService implements IWordService {
         deckRepo.save(deck);
         wordRepo.save(word);
         return modelMapper.map(word, WordResponseDTO.class) ;
+    }
+
+    // update the word's difficulty.
+    @Override
+    public WordResponseDTO updateDifficulty(Long id, Difficulty difficulty) {
+        Optional<Word> optionalWord = wordRepo.findById(id);
+        if (optionalWord.isEmpty()) {
+            throw new NotFoundException("Word not found!");
+        }
+        Word word = optionalWord.get();
+        word.setDifficulty(difficulty);
+        wordRepo.save(word);
+        return modelMapper.map(word, WordResponseDTO.class);
     }
 }

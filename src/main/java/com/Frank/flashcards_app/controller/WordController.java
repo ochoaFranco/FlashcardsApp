@@ -2,6 +2,7 @@ package com.Frank.flashcards_app.controller;
 
 import com.Frank.flashcards_app.dto.WordRequestDTO;
 import com.Frank.flashcards_app.dto.WordResponseDTO;
+import com.Frank.flashcards_app.model.Difficulty;
 import com.Frank.flashcards_app.service.IWordService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +42,12 @@ public class WordController {
     public ResponseEntity<WordResponseDTO> editWord(@PathVariable Long id, @Valid @RequestBody WordRequestDTO wordRequestDTO) {
         return new ResponseEntity<>(wordService.editWord(id, wordRequestDTO), HttpStatus.OK);
     }
+
+    // update word's difficulty
+     @PatchMapping("/edit/difficulty/{id}")
+     public ResponseEntity<WordResponseDTO> editWordDifficulty(@PathVariable Long id, @RequestParam Difficulty difficulty) {
+        return new ResponseEntity<>(wordService.updateDifficulty(id, difficulty), HttpStatus.OK);
+     }
 
     // Delete a word by its ID.
     @DeleteMapping("/delete/{id}")
