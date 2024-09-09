@@ -20,7 +20,12 @@ const fetchFlashcards = async (deckId) => {
         if (!response.ok) throw new Error('Network response was not ok');
         flashcards = await response.json();
         console.log(flashcards);
+
+        const flashcardSection = document.getElementById('flashcard-section');
+        const noCardsMessage = document.getElementById('no-cards-message');
+
         if (flashcards.length > 0) {
+            noCardsMessage.style.display = 'none'; // Hide the no-cards message
             showCard(currentCard); // Initialize with the first card
             document.getElementById('reveal-answer').addEventListener('click', revealAnswer);
             document.getElementById('next-card').addEventListener('click', nextCard);
@@ -28,12 +33,16 @@ const fetchFlashcards = async (deckId) => {
             document.getElementById('medium-btn').addEventListener('click', () => rateDifficulty("difficult"));
             document.getElementById('hard-btn').addEventListener('click', () => rateDifficulty("hard"));
         } else {
-            console.error('No flashcards found for this deck');
+            noCardsMessage.style.display = 'block'; // Show the no-cards message
+            document.getElementById('reveal-answer').style.display = 'none';
+            document.getElementById('next-card').style.display = 'none';
+            document.getElementById('difficulty-rating').style.display = 'none';
         }
     } catch (error) {
         console.error('Error fetching flashcards:', error);
     }
 };
+
  
 const showCard = (index) => {
     if (index < 0 || index >= flashcards.length) {
@@ -59,10 +68,28 @@ const revealAnswer = () => {
 
 
 const nextCard = () => {
-    currentCard = (currentCard + 1) % flashcards.length;
-    showCard(currentCard);
+    if (currentCard < flashcards.length - 1) {
+        currentCard++;
+        showCard(currentCard);
+    } else {
+        clearFlashcardContent();
+        hideControls();
+        document.getElementById('no-cards-message').style.display = 'block'; // Display the message
+    }
 };
 
+const clearFlashcardContent = () => {
+    // Clear the flashcard content
+    document.getElementById('flashcard').textContent = '';
+    document.getElementById('flashcard-answer').textContent = '';
+};
+
+const hideControls = () => {
+    // Function to hide all controls when no cards are left
+    document.getElementById('reveal-answer').style.display = 'none';
+    document.getElementById('next-card').style.display = 'none';
+    document.getElementById('difficulty-rating').style.display = 'none';
+};
 
 const rateDifficulty = async (difficulty) => {
     const wordId = flashcards[currentCard].wordId;

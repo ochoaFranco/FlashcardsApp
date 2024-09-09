@@ -22,7 +22,7 @@ const displayWordDetails = (word) => {
     wordDetails.innerHTML = `
         <h2>${word.wordName}</h2>
         <p><strong>Meaning:</strong> ${word.meaning}</p>
-          <p><strong>Last review:</strong> ${word.lastReview ? word.lastReview : '-'}</p>
+          <p><strong>Last review:</strong> ${word.lastReviewed ? word.lastReviewed : '-'}</p>
         <p><strong>Next review:</strong> ${word.nextReviewDue ? word.nextReviewDue : '-'}</p>
     `;
 };
