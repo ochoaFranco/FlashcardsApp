@@ -1,5 +1,5 @@
 # Stage 1: Build the application
-FROM openjdk:17-jdk AS build
+FROM openjdk:17-alpine AS build
 
 # Set working directory
 WORKDIR /app
@@ -19,16 +19,13 @@ RUN chmod +x ./mvnw
 RUN ./mvnw clean package -DskipTests
 
 # Stage 2: Create the final Docker image
-FROM openjdk:17-jdk
-
-# Set a volume pointing to /tmp (optional, for temporary files)
-VOLUME /tmp
+FROM openjdk:17-alpine
 
 # Copy the packaged JAR file from the build stage to the final image
-COPY --from=build /app/target/flashcards-app-0.0.1-SNAPSHOT.jar /flashcards-app-0.0.1-SNAPSHOT.jar
+COPY target/flashcards-app-0.0.1-SNAPSHOT.jar app.jar
 
 # Run the application
-ENTRYPOINT ["java", "-jar", "/flashcards-app-0.0.1-SNAPSHOT.jar"]
+ENTRYPOINT ["java", "-jar", "/app.jar"]
 
 # Expose the port the application will run on
 EXPOSE 8080
