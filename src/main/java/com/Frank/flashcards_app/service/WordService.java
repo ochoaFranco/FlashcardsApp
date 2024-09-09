@@ -151,6 +151,7 @@ public class WordService implements IWordService {
         Word word = optionalWord.get();
         word.setDifficulty(difficulty);
         word.setLastReviewed(LocalDate.now());
+        System.out.println("last review: " + word.getLastReviewed());
         // update review time
         if (difficulty == Difficulty.normal) {
             word.setNextReviewDue(LocalDate.now().plusDays(2));
