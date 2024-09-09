@@ -24,3 +24,11 @@ This project is a web application developed with **Java**, **Spring Boot**, and 
 - **Maven**: Tool for managing dependencies and building the project.
 - **Javascript** **HTML** **CSS**: Used for frontend development.
 
+
+## Screenshots
+
+![App Screenshot](https://github.com/ochoaFranco/FlashcardsApp/blob/main/img/dashboard.png)
+![App Screenshot](https://github.com/ochoaFranco/FlashcardsApp/blob/main/img/decks.png)
+![App Screenshot](https://github.com/ochoaFranco/FlashcardsApp/blob/main/img/study-1.png)
+![App Screenshot](https://github.com/ochoaFranco/FlashcardsApp/blob/main/img/study-2.png)
+
