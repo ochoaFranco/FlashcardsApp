@@ -163,4 +163,11 @@ public class WordService implements IWordService {
         wordRepo.save(word);
         return modelMapper.map(word, WordResponseDTO.class);
     }
+
+    @Override
+    public List<WordResponseDTO> searchWordsByPrefix(String prefix) {
+        return wordRepo.findBywordNameStartingWithIgnoreCase(prefix).stream()
+                .map(word -> modelMapper.map(word, WordResponseDTO.class))
+                .collect(Collectors.toList());
+    }
 }

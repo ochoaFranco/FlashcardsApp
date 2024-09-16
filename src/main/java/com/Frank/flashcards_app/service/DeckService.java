@@ -116,7 +116,10 @@ public class DeckService implements IDeckService {
         LocalDate today = LocalDate.now();
         return wordList.stream()
                 .map(word -> modelMapper.map(word, WordResponseDTO.class))
-                .filter(word -> word.getNextReviewDue() != null && word.getNextReviewDue().isEqual(today)) // ensures that is displaying words for today.
+                .filter(word -> word.getNextReviewDue() != null && (word.getNextReviewDue().isEqual(today)) ||
+                word.getNextReviewDue().isBefore(today)
+                ) // ensures that is displaying words for today.
                 .collect(Collectors.toList());
     }
 }
+

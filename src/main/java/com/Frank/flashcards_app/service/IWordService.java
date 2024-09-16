@@ -22,4 +22,5 @@ public interface IWordService {
     WordResponseDTO assignDeck(Long wordId, Long deckId);
     // update word's difficulty
     WordResponseDTO updateDifficulty(Long id, Difficulty difficulty);
+    List<WordResponseDTO> searchWordsByPrefix(String prefix);
 }

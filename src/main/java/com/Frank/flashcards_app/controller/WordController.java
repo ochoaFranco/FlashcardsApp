@@ -31,7 +31,13 @@ public class WordController {
         return new ResponseEntity<>(wordService.getWords(), HttpStatus.OK);
     }
 
-    // Read one category.
+    // Get all words by a prefix.
+    @GetMapping("/search")
+    public ResponseEntity<List<WordResponseDTO>> searchWords(@RequestParam String prefix) {
+        return new ResponseEntity<>(wordService.searchWordsByPrefix(prefix), HttpStatus.OK);
+    }
+
+    // Read one word.
     @GetMapping("/{id}")
     public ResponseEntity<WordResponseDTO> getWordById(@PathVariable Long id) {
         return new ResponseEntity<>(wordService.getWordById(id), HttpStatus.OK);
